@@ -20,24 +20,21 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-        ##server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-        ##settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Setup JFrog CLI
       uses: jfrog/setup-jfrog-cli@v3
       env:
         JF_ENV_1: ${{ secrets.JF_SECRET_ENV_1 }}
+        REPO_NAME : sampleapi-mvn-dev
         
     - name: Ping JFrog CLI
       run: jf rt ping
 
     - name: Setup Maven Config
-      ##env:
-        ##SERVER_ID: tal-eplus-saas
       run: |
         ##echo "::set-env name=repository::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
         ##jf mvnc --server-id-resolve=$SERVER_ID --server-id-deploy=$SERVER_ID --repo-resolve-releases=auto-cli-virtual-$repository --repo-resolve-snapshots=auto-cli-virtual-$repository --repo-deploy-releases=auto-cli-virtual-$repository --repo-deploy-snapshots=auto-cli-virtual-$repository
-        jf mvnc --repo-resolve-releases sampleapi-mvn-dev --repo-resolve-snapshots sampleapi-mvn-dev --repo-deploy-releases sampleapi-mvn-dev --repo-deploy-snapshots sampleapi-mvn-dev
+        jf mvnc --repo-resolve-releases $REPO_NAME --repo-resolve-snapshots $REPO_NAME --repo-deploy-releases $REPO_NAME --repo-deploy-snapshots $REPO_NAME
      
     - name: Build & Deploy
       run: | 
