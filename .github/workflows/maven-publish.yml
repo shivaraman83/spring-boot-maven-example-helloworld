@@ -51,6 +51,6 @@ jobs:
    
     - name: Xray scan
       run: |
-        jf bs
+        jf bs --fail=false
         
         
