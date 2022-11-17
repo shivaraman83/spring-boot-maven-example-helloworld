@@ -36,12 +36,12 @@ jobs:
         ##SERVER_ID: tal-eplus-saas
       run: |
         ##echo "::set-env name=repository::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
-        jf mvnc --server-id-resolve=$SERVER_ID --server-id-deploy=$SERVER_ID --repo-resolve-releases=auto-cli-virtual-$repository --repo-resolve-snapshots=auto-cli-virtual-$repository --repo-deploy-releases=auto-cli-virtual-$repository --repo-deploy-snapshots=auto-cli-virtual-$repository
+        ##jf mvnc --server-id-resolve=$SERVER_ID --server-id-deploy=$SERVER_ID --repo-resolve-releases=auto-cli-virtual-$repository --repo-resolve-snapshots=auto-cli-virtual-$repository --repo-deploy-releases=auto-cli-virtual-$repository --repo-deploy-snapshots=auto-cli-virtual-$repository
         jf mvnc --repo-resolve-releases sampleapi-mvn-dev --repo-resolve-snapshots sampleapi-mvn-dev --repo-deploy-releases sampleapi-mvn-dev --repo-deploy-snapshots sampleapi-mvn-dev
      
     - name: Build & Deploy
       run: | 
-        cd maths && jf mvn clean install
+        jf mvn clean install
         
     - name: Publish Build Information
       run: |
