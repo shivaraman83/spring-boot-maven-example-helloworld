@@ -3,7 +3,7 @@
 
 name: sampleapi-mvn-api-build
 
-on: push
+on: [workflow_dispatch]
 
 jobs:
   build:
