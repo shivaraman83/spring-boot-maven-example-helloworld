@@ -20,7 +20,7 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     - name: Setup JFrog CLI
-      uses: jfrog/setup-jfrog-cli@v3
+      uses: jfrog/setup-jfrog-cli@v4
       env:
         JF_ENV_1: ${{ secrets.JF_SECRET_ENV_1 }}
         
